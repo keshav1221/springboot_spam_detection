@@ -10,6 +10,7 @@ The Spam Detection System is a backend application built with Spring Boot that e
 ✔ RESTful API Design – Well-structured API endpoints for seamless integration.
 ✔ MySQL Database Integration – Persistent storage of user data and spam reports.
 ✔ Automated Database Population – Uses SQL scripts to initialize the database with sample data.
+
 ## Technologies Used
 
 - **Java 17**
