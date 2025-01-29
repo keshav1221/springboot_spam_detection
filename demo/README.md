@@ -1,15 +1,15 @@
 # Spam Detection
 
-##Overview
+## Overview
 The Spam Detection System is a backend application built with Spring Boot that enables spam detection and user management. It provides secure authentication using JWT, ensures robust API security with Spring Security, and leverages Spring Data JPA for efficient database operations.
 
-##Key Features
--✔ User Authentication & Authorization – Secure login and registration using JWT-based authentication.
--✔ Spam Reporting – Users can report phone numbers as spam, contributing to a database of flagged numbers.
--✔ User Management – Supports profile updates and search functionality based on names and phone numbers.
--✔ RESTful API Design – Well-structured API endpoints for seamless integration.
--✔ MySQL Database Integration – Persistent storage of user data and spam reports.
--✔ Automated Database Population – Uses SQL scripts to initialize the database with sample data.
+## Key Features
+- User Authentication & Authorization – Secure login and registration using JWT-based authentication.
+- Spam Reporting – Users can report phone numbers as spam, contributing to a database of flagged numbers.
+- User Management – Supports profile updates and search functionality based on names and phone numbers.
+- RESTful API Design – Well-structured API endpoints for seamless integration.
+- MySQL Database Integration – Persistent storage of user data and spam reports.
+- Automated Database Population – Uses SQL scripts to initialize the database with sample data.
 
 ## Technologies Used
 
