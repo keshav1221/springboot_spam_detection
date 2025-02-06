@@ -10,9 +10,7 @@ import com.example.demo.Repository.SpamReportRepo;
 import com.example.demo.Repository.UserRepo;
 import com.example.demo.Util.JwtUtil;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Null;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,16 +29,10 @@ public class UserService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    public User saveUser(User user) {
-        Optional<User> user1 = userRepository.findByPhoneNumber(user.getPhoneNumber());
-        if(user1.isPresent())
-        {
-            User user2 = user1.get();
-            System.out.println(user2.getName());
-            throw new RuntimeException("User already registered");
-        }
+    public String saveUser(User user) {
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        User result =userRepository.save(user);
+        userRepository.save(user);
         Contacts contacts = contactRepo.findByPhoneNumber(user.getPhoneNumber());
         if(contacts==null) {
             Contacts contact = new Contacts();
@@ -49,6 +41,7 @@ public class UserService {
             contactRepo.save(contact);
         }
         List<Contacts> contactsList = user.getContacts();
+        List<Contacts> newContactList = new ArrayList<>();
         if(contactsList!=null)
         {
             contactsList.forEach(var -> {
@@ -56,15 +49,16 @@ public class UserService {
                 Contacts existingContact = contactRepo.findByPhoneNumber(var.getPhoneNumber());
                 if (existingContact == null) {
                     var.setUser(user);
-                    contactRepo.save(var);
+                    newContactList.add(var);
                 } else {
                     existingContact.setUser(user);
-                    contactRepo.save(existingContact);
+                    newContactList.add(existingContact);
                 }
 
             });
+            contactRepo.saveAll(newContactList);
         }
-        return result;
+        return "User Saved Successfully";
     }
 
     public List<SearchDisplay> searchByName(String name) {

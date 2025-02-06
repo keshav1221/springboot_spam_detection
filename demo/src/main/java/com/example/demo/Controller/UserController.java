@@ -14,7 +14,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public User registerUser(@Valid @RequestBody User user) {
+    public String registerUser(@Valid @RequestBody User user) {
 
         return userService.saveUser(user);
     }
